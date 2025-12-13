@@ -44,6 +44,7 @@ function getIconComponent(iconName: string) {
       <h1>Material Symbols iconify-vue SVG + CSS - {{ iconCount }}アイコン</h1>
       <nav>
         <NuxtLink to="/">← トップに戻る</NuxtLink>
+        <a href="https://github.com/kazudeath1/material-symbols-benchmark/blob/main/pages/iconify-svg-css-10.vue" target="_blank" rel="noopener noreferrer">View Source</a>
       </nav>
     </header>
 

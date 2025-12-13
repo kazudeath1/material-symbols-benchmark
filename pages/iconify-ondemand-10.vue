@@ -12,6 +12,7 @@ const icons = ICONS_10.map((icon) => icon.replace(/_/g, '-'));
       <h1>Material Symbols @iconify/vue On Demand - {{ iconCount }}アイコン</h1>
       <nav>
         <NuxtLink to="/">← トップに戻る</NuxtLink>
+        <a href="https://github.com/kazudeath1/material-symbols-benchmark/blob/main/pages/iconify-ondemand-10.vue" target="_blank" rel="noopener noreferrer">View Source</a>
       </nav>
     </header>
 

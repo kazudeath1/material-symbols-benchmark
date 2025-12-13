@@ -24,6 +24,7 @@ function getIconComponentName(iconName: string): string {
       <h1>Material Symbols svgo - {{ iconCount }}アイコン</h1>
       <nav>
         <NuxtLink to="/">← トップに戻る</NuxtLink>
+        <a href="https://github.com/kazudeath1/material-symbols-benchmark/blob/main/pages/svgo-50.vue" target="_blank" rel="noopener noreferrer">View Source</a>
       </nav>
     </header>
 

@@ -21,6 +21,7 @@ useHead({
       <h1>Material Symbols Webfont - {{ iconCount }}アイコン</h1>
       <nav>
         <NuxtLink to="/">← トップに戻る</NuxtLink>
+        <a href="https://github.com/kazudeath1/material-symbols-benchmark/blob/main/pages/webfont-10.vue" target="_blank" rel="noopener noreferrer">View Source</a>
       </nav>
     </header>
 
