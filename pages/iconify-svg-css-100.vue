@@ -14,7 +14,7 @@ const IconBookmark = defineAsyncComponent(() => import('@iconify-vue/material-sy
 const IconBugReport = defineAsyncComponent(() => import('@iconify-vue/material-symbols/bug-report'));
 const IconBuild = defineAsyncComponent(() => import('@iconify-vue/material-symbols/build'));
 const IconCalendarToday = defineAsyncComponent(() => import('@iconify-vue/material-symbols/calendar-today'));
-const IconCamera = defineAsyncComponent(() => import('@iconify-vue/material-symbols/camera'));
+const IconPhotoCamera = defineAsyncComponent(() => import('@iconify-vue/material-symbols/photo-camera'));
 const IconCategory = defineAsyncComponent(() => import('@iconify-vue/material-symbols/category'));
 const IconChat = defineAsyncComponent(() => import('@iconify-vue/material-symbols/chat'));
 const IconCheck = defineAsyncComponent(() => import('@iconify-vue/material-symbols/check'));
@@ -120,7 +120,7 @@ const iconMap: Record<string, Component> = {
   bug_report: IconBugReport,
   build: IconBuild,
   calendar_today: IconCalendarToday,
-  camera_alt: IconCamera,
+  photo_camera: IconPhotoCamera,
   category: IconCategory,
   chat: IconChat,
   check: IconCheck,
@@ -174,7 +174,7 @@ const iconMap: Record<string, Component> = {
   payments: IconPayments,
   person: IconPerson,
   person_add: IconPersonAdd,
-  phone: IconCall,
+  call: IconCall,
   pie_chart: IconPieChart,
   play_arrow: IconPlayArrow,
   print: IconPrint,
@@ -240,7 +240,12 @@ function getIconComponent(iconName: string) {
         <div v-for="icon in icons" :key="icon" class="icon-item">
           <div class="icon-name">{{ icon }}</div>
           <div class="icon-sizes">
-            <component v-for="size in SIZES" :key="size" :is="getIconComponent(icon)" :style="{ width: `${size}px`, height: `${size}px` }" />
+            <template v-if="getIconComponent(icon)">
+              <component v-for="size in SIZES" :key="size" :is="getIconComponent(icon)" :style="{ width: `${size}px`, height: `${size}px` }" />
+            </template>
+            <template v-else>
+              <span v-for="size in SIZES" :key="size" class="icon-placeholder" :style="{ width: `${size}px`, height: `${size}px` }"></span>
+            </template>
           </div>
         </div>
       </div>
@@ -332,5 +337,12 @@ nav a.router-link-active {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.icon-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  border: 1px dashed #ccc;
+  border-radius: 2px;
 }
 </style>

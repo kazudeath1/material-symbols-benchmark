@@ -7,7 +7,8 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "bp": "nuxt build && nuxt preview"
+    "bp": "nuxt build && nuxt preview",
+    "download-icons": "node scripts/download-icons.mjs"
   },
   "dependencies": {
     "@iconify-vue/material-symbols": "^1.0.2",

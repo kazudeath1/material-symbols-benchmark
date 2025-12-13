@@ -1,5 +1,11 @@
-// 検証対象アイコンリスト（100個）
-export const ALL_ICONS = [
+// アイコン数ごとのサブセット（10個）
+export const ICONS_10 = ['home', 'search', 'menu', 'close', 'settings', 'person', 'check', 'add', 'arrow_back', 'arrow_forward'] as const;
+
+// アイコン数ごとのサブセット（50個）
+export const ICONS_50 = ['home', 'search', 'menu', 'close', 'settings', 'person', 'check', 'add', 'arrow_back', 'arrow_forward', 'delete', 'edit', 'more_vert', 'more_horiz', 'notifications', 'visibility', 'visibility_off', 'favorite', 'star', 'info', 'warning', 'error', 'help', 'refresh', 'download', 'upload', 'share', 'filter_list', 'sort', 'logout', 'login', 'calendar_today', 'schedule', 'mail', 'chat', 'call', 'location_on', 'link', 'attach_file', 'folder', 'description', 'image', 'photo_camera', 'play_arrow', 'pause', 'stop', 'skip_next', 'skip_previous', 'volume_up'] as const;
+
+// アイコン数ごとのサブセット（100個）
+export const ICONS_100 = [
   'home',
   'search',
   'menu',
@@ -35,14 +41,14 @@ export const ALL_ICONS = [
   'schedule',
   'mail',
   'chat',
-  'phone',
+  'call',
   'location_on',
   'link',
   'attach_file',
   'folder',
   'description',
   'image',
-  'camera_alt',
+  'photo_camera',
   'play_arrow',
   'pause',
   'stop',
@@ -102,15 +108,10 @@ export const ALL_ICONS = [
   'public',
 ] as const;
 
-// アイコン数ごとのサブセット
-export const ICONS_10 = ALL_ICONS.slice(0, 10).sort();
-export const ICONS_50 = ALL_ICONS.slice(0, 50).sort();
-export const ICONS_100 = [...ALL_ICONS].sort();
-
 // Google Fonts URL生成（Webfont用）
 export function generateGoogleFontsUrl(icons: readonly string[]): string {
-  const iconNames = icons.join(',');
-  return `https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&icon_names=${iconNames}&display=block`;
+  const iconNames = [...icons].sort().join(',');
+  return `https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,1,0&icon_names=${iconNames}&display=block`;
 }
 
 // アイコン表示サイズ

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ICONS_10, generateGoogleFontsUrl } from '~/utils/icons';
+import { ICONS_100, generateGoogleFontsUrl } from '~/utils/icons';
 
-const icons = ICONS_10;
+const icons = ICONS_100;
 const fontsUrl = generateGoogleFontsUrl(icons);
 
 // リアクティブな状態管理
@@ -85,16 +85,45 @@ useHead({
         <div v-for="icon in icons" :key="icon" class="icon-item">
           <div class="icon-name">{{ icon }}</div>
           <div class="icon-display">
-            <span
-              class="material-symbols-outlined"
-              :style="{
-                fontSize: `${actualFontSize}px`,
-                fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${actualOpsz}`,
-                fontOpticalSizing: opticalSizing,
-              }"
-            >
-              {{ icon }}
-            </span>
+            <div class="icon-variant">
+              <span
+                class="material-symbols-outlined"
+                :style="{
+                  fontSize: `${actualFontSize}px`,
+                  fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${actualOpsz}`,
+                  fontOpticalSizing: opticalSizing,
+                }"
+              >
+                {{ icon }}
+              </span>
+              <div class="opsz-label">opsz: {{ actualOpsz }}</div>
+            </div>
+            <div class="icon-variant">
+              <span
+                class="material-symbols-outlined"
+                :style="{
+                  fontSize: `${actualFontSize}px`,
+                  fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20`,
+                  fontOpticalSizing: opticalSizing,
+                }"
+              >
+                {{ icon }}
+              </span>
+              <div class="opsz-label">opsz: 20</div>
+            </div>
+            <div class="icon-variant">
+              <span
+                class="material-symbols-outlined"
+                :style="{
+                  fontSize: `${actualFontSize}px`,
+                  fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48`,
+                  fontOpticalSizing: opticalSizing,
+                }"
+              >
+                {{ icon }}
+              </span>
+              <div class="opsz-label">opsz: 48</div>
+            </div>
           </div>
         </div>
       </div>
@@ -276,9 +305,24 @@ nav a.router-link-active {
 
 .icon-display {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  gap: 16px;
   min-height: 100px;
+}
+
+.icon-variant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.opsz-label {
+  font-size: 10px;
+  color: #999;
+  font-family: monospace;
+  white-space: nowrap;
 }
 
 .material-symbols-outlined {

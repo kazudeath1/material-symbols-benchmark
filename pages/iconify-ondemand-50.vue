@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue';
 import { ICONS_50, SIZES } from '~/utils/icons';
 
 const iconCount = 50;
-const icons = ICONS_50;
+const icons = ICONS_50.map((icon) => icon.replace(/_/g, '-'));
 </script>
 
 <template>
@@ -30,13 +30,7 @@ const icons = ICONS_50;
         <div v-for="icon in icons" :key="icon" class="icon-item">
           <div class="icon-name">{{ icon }}</div>
           <div class="icon-sizes">
-            <Icon
-              v-for="size in SIZES"
-              :key="size"
-              :icon="`material-symbols:${icon}`"
-              :width="size"
-              :height="size"
-            />
+            <Icon v-for="size in SIZES" :key="size" :icon="`material-symbols:${icon}`" :width="size" :height="size" />
           </div>
         </div>
       </div>

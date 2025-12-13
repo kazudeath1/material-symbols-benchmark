@@ -62,7 +62,12 @@ function getIconComponent(iconName: string) {
           <div v-for="icon in icons" :key="icon" class="icon-item">
             <div class="icon-name">{{ icon }}</div>
             <div class="icon-sizes">
-              <component v-for="size in SIZES" :key="size" :is="getIconComponent(icon)" :style="{ width: `${size}px`, height: `${size}px` }" />
+              <template v-if="getIconComponent(icon)">
+                <component v-for="size in SIZES" :key="size" :is="getIconComponent(icon)" :style="{ width: `${size}px`, height: `${size}px` }" />
+              </template>
+              <template v-else>
+                <span v-for="size in SIZES" :key="size" class="icon-placeholder" :style="{ width: `${size}px`, height: `${size}px` }"></span>
+              </template>
             </div>
           </div>
         </div>
@@ -155,5 +160,12 @@ nav a.router-link-active {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.icon-placeholder {
+  display: inline-block;
+  background: #f0f0f0;
+  border: 1px dashed #ccc;
+  border-radius: 2px;
 }
 </style>

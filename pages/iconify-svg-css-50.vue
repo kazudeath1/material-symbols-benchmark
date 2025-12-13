@@ -9,7 +9,7 @@ const IconArrowBack = defineAsyncComponent(() => import('@iconify-vue/material-s
 const IconArrowForward = defineAsyncComponent(() => import('@iconify-vue/material-symbols/arrow-forward'));
 const IconAttachFile = defineAsyncComponent(() => import('@iconify-vue/material-symbols/attach-file'));
 const IconCalendarToday = defineAsyncComponent(() => import('@iconify-vue/material-symbols/calendar-today'));
-const IconCamera = defineAsyncComponent(() => import('@iconify-vue/material-symbols/camera'));
+const IconPhotoCamera = defineAsyncComponent(() => import('@iconify-vue/material-symbols/photo-camera'));
 const IconChat = defineAsyncComponent(() => import('@iconify-vue/material-symbols/chat'));
 const IconCheck = defineAsyncComponent(() => import('@iconify-vue/material-symbols/check'));
 const IconClose = defineAsyncComponent(() => import('@iconify-vue/material-symbols/close'));
@@ -51,7 +51,6 @@ const IconStop = defineAsyncComponent(() => import('@iconify-vue/material-symbol
 const IconUpload = defineAsyncComponent(() => import('@iconify-vue/material-symbols/upload'));
 const IconVisibility = defineAsyncComponent(() => import('@iconify-vue/material-symbols/visibility'));
 const IconVisibilityOff = defineAsyncComponent(() => import('@iconify-vue/material-symbols/visibility-off'));
-const IconVolumeOff = defineAsyncComponent(() => import('@iconify-vue/material-symbols/volume-off'));
 const IconVolumeUp = defineAsyncComponent(() => import('@iconify-vue/material-symbols/volume-up'));
 const IconWarning = defineAsyncComponent(() => import('@iconify-vue/material-symbols/warning'));
 
@@ -65,7 +64,7 @@ const iconMap: Record<string, Component> = {
   arrow_forward: IconArrowForward,
   attach_file: IconAttachFile,
   calendar_today: IconCalendarToday,
-  camera_alt: IconCamera,
+  photo_camera: IconPhotoCamera,
   chat: IconChat,
   check: IconCheck,
   close: IconClose,
@@ -92,7 +91,7 @@ const iconMap: Record<string, Component> = {
   notifications: IconNotifications,
   pause: IconPause,
   person: IconPerson,
-  phone: IconCall,
+  call: IconCall,
   play_arrow: IconPlayArrow,
   refresh: IconRefresh,
   schedule: IconSchedule,
@@ -107,7 +106,6 @@ const iconMap: Record<string, Component> = {
   upload: IconUpload,
   visibility: IconVisibility,
   visibility_off: IconVisibilityOff,
-  volume_off: IconVolumeOff,
   volume_up: IconVolumeUp,
   warning: IconWarning,
 };
@@ -141,7 +139,12 @@ function getIconComponent(iconName: string) {
         <div v-for="icon in icons" :key="icon" class="icon-item">
           <div class="icon-name">{{ icon }}</div>
           <div class="icon-sizes">
-            <component v-for="size in SIZES" :key="size" :is="getIconComponent(icon)" :style="{ width: `${size}px`, height: `${size}px` }" />
+            <template v-if="getIconComponent(icon)">
+              <component v-for="size in SIZES" :key="size" :is="getIconComponent(icon)" :style="{ width: `${size}px`, height: `${size}px` }" />
+            </template>
+            <template v-else>
+              <span v-for="size in SIZES" :key="size" class="icon-placeholder" :style="{ width: `${size}px`, height: `${size}px` }"></span>
+            </template>
           </div>
         </div>
       </div>
