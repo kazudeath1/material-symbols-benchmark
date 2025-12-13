@@ -1,26 +1,43 @@
 <template>
   <div class="container">
     <header>
-      <h1>Material Symbols 検証</h1>
-      <p class="subtitle">Webfontの転送サイズとoptical size挙動を検証</p>
+      <h1>Material Symbols アイコン表示方法比較・検証</h1>
+      <p class="subtitle">Material Symbolsを使った各アイコン表示方法の比較・optical size挙動を検証</p>
     </header>
 
     <main>
-      <!-- 転送サイズ検証 -->
+      <!-- 挙動検証 -->
       <section class="section-group">
-        <h2 class="section-title">転送サイズ検証</h2>
+        <h2 class="section-title">Optical size 挙動検証</h2>
 
         <div class="intro">
           <h3>検証目的</h3>
-          <p>
-            Material Symbolsの<strong>Webfont（可変フォント）</strong>と<strong>iconify-vue（SVG + CSS）</strong>の転送サイズを比較検証します。
-            Optical sizeを活かすには可変フォントが必要ですが、「Webfontは重い」という懸念があります。
-            サブセット化したWebfontが実用的なサイズに収まることを数値で示します。
-          </p>
+          <p>Material Symbolsの<strong>optical size（opsz）</strong>の挙動を検証します。 font-sizeとopszの連動、個別調整による視覚的な変化を確認できます。</p>
         </div>
 
         <div class="test-pages">
           <h3>検証ページ</h3>
+
+          <div class="page-grid">
+            <div class="page-card">
+              <h4>Webfont サイズテスト</h4>
+              <p>フォントサイズとoptical sizeを個別に調整</p>
+              <p class="feature">✓ font-optical-sizing切り替え</p>
+              <p class="feature">✓ size固定でopsz調整可能</p>
+              <div class="links">
+                <NuxtLink to="/webfont-test" class="btn">テストページを開く</NuxtLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- アイコン表示方法比較 -->
+      <section class="section-group">
+        <h2 class="section-title">アイコン表示方法比較</h2>
+
+        <div class="test-pages">
+          <h3>各アイコン表示方法のページ</h3>
 
           <div class="page-grid">
             <div class="page-card">
@@ -46,83 +63,24 @@
             </div>
 
             <div class="page-card">
-              <h4>svgo <code>Auto Import</code></h4>
-              <p>assets/icons からSVGを自動インポート</p>
-              <p class="feature">✓ ビルド時に最適化</p>
+              <h4>@iconify/vue <code>On Demand</code></h4>
+              <p>&lt;Icon&gt; コンポーネントでオンデマンド読み込み</p>
+              <p class="feature">✓ 必要なアイコンのみ取得</p>
+              <div class="links">
+                <NuxtLink to="/iconify-ondemand-10" class="btn">10アイコン</NuxtLink>
+                <NuxtLink to="/iconify-ondemand-50" class="btn">50アイコン</NuxtLink>
+                <NuxtLink to="/iconify-ondemand-100" class="btn">100アイコン</NuxtLink>
+              </div>
+            </div>
+
+            <div class="page-card">
+              <h4>nuxt-svgo <code>Auto Import</code></h4>
+              <p>assets/icons からSVGをコンポーネントとして自動インポート</p>
+              <p class="feature">✓ ビルド時にコンポーネントとして自動importされる。利用時はtemplateで直接使用可能。</p>
               <div class="links">
                 <NuxtLink to="/svgo-10" class="btn">10アイコン</NuxtLink>
                 <NuxtLink to="/svgo-50" class="btn">50アイコン</NuxtLink>
                 <NuxtLink to="/svgo-100" class="btn">100アイコン</NuxtLink>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="instructions">
-          <h3>計測方法</h3>
-          <ol>
-            <li>本番ビルドを実行: <code>npm run build && npm run preview</code></li>
-            <li>DevTools Networkタブを開く</li>
-            <li>「Disable cache」にチェック</li>
-            <li>各ページを開いて「transferred」列を確認</li>
-            <li>転送サイズ、リクエスト数を記録</li>
-          </ol>
-        </div>
-
-        <div class="metrics">
-          <h3>計測項目</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>項目</th>
-                <th>確認方法</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>転送サイズ</td>
-                <td>DevTools Network → transferred列</td>
-              </tr>
-              <tr>
-                <td>リクエスト数</td>
-                <td>DevTools Network → リクエスト総数</td>
-              </tr>
-              <tr>
-                <td>フォントファイルサイズ</td>
-                <td>Webfont版: woff2ファイル単体のサイズ</td>
-              </tr>
-              <tr>
-                <td>JS bundle増分</td>
-                <td>iconify-vue版: アイコン追加前後の差分</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- 挙動検証 -->
-      <section class="section-group">
-        <h2 class="section-title">挙動検証</h2>
-
-        <div class="intro">
-          <h3>検証目的</h3>
-          <p>
-            可変フォントの<strong>optical size（opsz）</strong>と<strong>font-optical-sizing</strong>の挙動を検証します。
-            font-sizeとopszの連動、個別調整による視覚的な変化を確認できます。
-          </p>
-        </div>
-
-        <div class="test-pages">
-          <h3>検証ページ</h3>
-
-          <div class="page-grid">
-            <div class="page-card">
-              <h4>Webfont サイズテスト</h4>
-              <p>フォントサイズとoptical sizeを個別に調整</p>
-              <p class="feature">✓ font-optical-sizing切り替え</p>
-              <p class="feature">✓ size固定でopsz調整可能</p>
-              <div class="links">
-                <NuxtLink to="/webfont-test" class="btn">テストページを開く</NuxtLink>
               </div>
             </div>
           </div>
@@ -190,6 +148,10 @@ h4 {
   color: #333;
 }
 
+.page-card h4:first-child {
+  margin-top: 0;
+}
+
 .intro {
   margin-bottom: 32px;
 }
@@ -222,7 +184,7 @@ h4 {
 }
 
 .page-card {
-  padding: 30px;
+  padding: 20px;
   border: 2px solid #e0e0e0;
   border-radius: 12px;
   background: white;
@@ -241,7 +203,7 @@ h4 {
 
 .links {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 20px;
 }

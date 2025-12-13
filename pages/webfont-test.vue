@@ -150,14 +150,19 @@ nav a.router-link-active {
   border-radius: 8px;
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
+  position: sticky;
+  top: 20px;
+  z-index: 10;
 }
 
 .control-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1 1 250px;
+  min-width: 250px;
 }
 
 .control-group label {
