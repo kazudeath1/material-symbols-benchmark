@@ -4,4 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-12-12',
   devtools: { enabled: true },
   modules: ['nuxt-svgo'],
+  app: {
+    baseURL: '/material-symbols-benchmark/',
+  },
 });

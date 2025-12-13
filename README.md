@@ -3,6 +3,7 @@
 Material SymbolsのWebfont（可変フォント）とSVGの転送サイズを比較検証するプロジェクトです。
 
 [![GitHub](https://img.shields.io/badge/GitHub-kazudeath1%2Fmaterial--symbols--benchmark-blue?logo=github)](https://github.com/kazudeath1/material-symbols-benchmark)
+[![Demo](https://img.shields.io/badge/Demo-GitHub%20Pages-green?logo=github)](https://kazudeath1.github.io/material-symbols-benchmark/)
 
 ## 検証目的
 
