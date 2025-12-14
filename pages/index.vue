@@ -1,22 +1,22 @@
 <template>
   <div class="container">
     <header>
-      <h1>Material Symbols アイコン表示方法比較・検証</h1>
-      <p class="subtitle">Material Symbolsを使った各アイコン表示方法の比較・optical size挙動を検証</p>
+      <h1>Material Symbols アイコン表示方法比較・挙動確認</h1>
+      <p class="subtitle">Material Symbolsを使った各アイコン表示方法の比較・optical size挙動を確認</p>
     </header>
 
     <main>
-      <!-- 挙動検証 -->
+      <!-- 挙動▼確認 -->
       <section class="section-group">
-        <h2 class="section-title">Optical size 挙動検証</h2>
+        <h2 class="section-title">Optical size 挙動確認</h2>
 
         <div class="intro">
-          <h3>検証目的</h3>
-          <p>Material Symbolsの<strong>optical size（opsz）</strong>の挙動を検証します。 font-sizeとopszの連動、個別調整による視覚的な変化を確認できます。</p>
+          <h3>目的</h3>
+          <p>Material Symbolsの<strong>optical size（opsz）</strong>の挙動を確認します。 font-sizeとopszの連動、個別調整による視覚的な変化を確認できます。</p>
         </div>
 
         <div class="test-pages">
-          <h3>検証ページ</h3>
+          <h3>確認ページ</h3>
 
           <div class="page-grid">
             <div class="page-card">
@@ -41,46 +41,47 @@
 
           <div class="page-grid">
             <div class="page-card">
-              <h4>Webfont版</h4>
+              <h4>Webfont</h4>
               <p>Google Fontsの可変フォント</p>
-              <p class="feature">✓ Optical size対応</p>
               <div class="links">
-                <NuxtLink to="/webfont-10" class="btn">10アイコン</NuxtLink>
-                <NuxtLink to="/webfont-50" class="btn">50アイコン</NuxtLink>
-                <NuxtLink to="/webfont-100" class="btn">100アイコン</NuxtLink>
+                <NuxtLink to="/webfont-fill-10" class="btn">10アイコン(FILL=1のみ)</NuxtLink>
+                <NuxtLink to="/webfont-fill-50" class="btn">50アイコン(FILL=1のみ)</NuxtLink>
+                <NuxtLink to="/webfont-fill-100" class="btn">100アイコン(FILL=1のみ)</NuxtLink>
+              </div>
+              <div class="links">
+                <NuxtLink to="/webfont-both-10" class="btn">10アイコン(FILL=0,1)</NuxtLink>
+                <NuxtLink to="/webfont-both-50" class="btn">50アイコン(FILL=0,1)</NuxtLink>
+                <NuxtLink to="/webfont-both-100" class="btn">100アイコン(FILL=0,1)</NuxtLink>
               </div>
             </div>
-
             <div class="page-card">
-              <h4>iconify-vue <code>SVG + CSS</code></h4>
-              <p>@iconify-vue/material-symbols でSVGをインライン化</p>
-              <p class="feature">✓ JS bundleに含まれる</p>
+              <h4>nuxt-svgo</h4>
+              <p><a href="https://www.npmjs.com/package/nuxt-svgo" target="_blank" rel="noopener">nuxt-svgo</a> で、SVGファイルをコンポーネントとして自動インポート</p>
+              <div class="links">
+                <NuxtLink to="/svgo-10" class="btn">10アイコン</NuxtLink>
+                <NuxtLink to="/svgo-50" class="btn">50アイコン</NuxtLink>
+                <NuxtLink to="/svgo-100" class="btn">100アイコン</NuxtLink>
+              </div>
+            </div>
+            <div class="page-card">
+              <h4>iconify (SVG + CSS)</h4>
+              <p>
+                <a href="https://www.npmjs.com/package/@iconify-vue/material-symbols" target="_blank" rel="noopener">@iconify-vue/material-symbols</a>
+                でSVGアイコンをコンポーネントとして使用 (<a href="https://iconify.design/docs/usage/svg-css/" target="_blank" rel="noopener">docs</a>)
+              </p>
               <div class="links">
                 <NuxtLink to="/iconify-svg-css-10" class="btn">10アイコン</NuxtLink>
                 <NuxtLink to="/iconify-svg-css-50" class="btn">50アイコン</NuxtLink>
                 <NuxtLink to="/iconify-svg-css-100" class="btn">100アイコン</NuxtLink>
               </div>
             </div>
-
             <div class="page-card">
-              <h4>@iconify/vue <code>On Demand</code></h4>
-              <p>&lt;Icon&gt; コンポーネントでオンデマンド読み込み</p>
-              <p class="feature">✓ 必要なアイコンのみ取得</p>
+              <h4>iconify (On Demand)</h4>
+              <p><a href="https://www.npmjs.com/package/@iconify/vue" target="_blank" rel="noopener">@iconify/vue</a> でオンデマンド読み込み (<a href="https://iconify.design/docs/icon-components/" target="_blank" rel="noopener">docs</a>)</p>
               <div class="links">
                 <NuxtLink to="/iconify-ondemand-10" class="btn">10アイコン</NuxtLink>
                 <NuxtLink to="/iconify-ondemand-50" class="btn">50アイコン</NuxtLink>
                 <NuxtLink to="/iconify-ondemand-100" class="btn">100アイコン</NuxtLink>
-              </div>
-            </div>
-
-            <div class="page-card">
-              <h4>nuxt-svgo <code>Auto Import</code></h4>
-              <p>assets/icons からSVGをコンポーネントとして自動インポート</p>
-              <p class="feature">✓ ビルド時にコンポーネントとして自動importされる。利用時はtemplateで直接使用可能。</p>
-              <div class="links">
-                <NuxtLink to="/svgo-10" class="btn">10アイコン</NuxtLink>
-                <NuxtLink to="/svgo-50" class="btn">50アイコン</NuxtLink>
-                <NuxtLink to="/svgo-100" class="btn">100アイコン</NuxtLink>
               </div>
             </div>
           </div>

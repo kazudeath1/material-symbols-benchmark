@@ -3,7 +3,7 @@ import { ICONS_10, generateGoogleFontsUrl, SIZES } from '~/utils/icons';
 
 const iconCount = 10;
 const icons = ICONS_10;
-const fontsUrl = generateGoogleFontsUrl(icons);
+const fontsUrl = generateGoogleFontsUrl(icons, true);
 
 useHead({
   link: [
@@ -27,7 +27,9 @@ useHead({
 
     <main>
       <div class="info">
-        <p>アイコン数: <strong>{{ iconCount }}</strong></p>
+        <p>
+          アイコン数: <strong>{{ iconCount }}</strong>
+        </p>
         <p>表示形式: <strong>Webfont (可変フォント)</strong></p>
         <p>サイズ: 20px, 24px, 40px, 48px (optical size対応)</p>
       </div>
@@ -42,7 +44,7 @@ useHead({
               class="material-symbols-outlined"
               :style="{
                 fontSize: `${size}px`,
-                fontVariationSettings: `'opsz' ${size}`,
+                fontVariationSettings: `'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' ${size}`,
               }"
             >
               {{ icon }}

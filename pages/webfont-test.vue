@@ -6,7 +6,6 @@ const fontsUrl = generateGoogleFontsUrl(icons);
 
 // リアクティブな状態管理
 const sliderValue = ref(24);
-const opticalSizing = ref<'auto' | 'none'>('auto');
 const isLinked = ref(true);
 
 // 実際に適用される値を計算
@@ -54,14 +53,6 @@ useHead({
           </label>
           <input id="size-slider" v-model.number="sliderValue" type="range" min="12" max="96" step="1" class="slider" />
         </div>
-
-        <div class="control-group">
-          <label>font-optical-sizing:</label>
-          <div class="toggle-buttons">
-            <button :class="{ active: opticalSizing === 'auto' }" @click="opticalSizing = 'auto'">auto</button>
-            <button :class="{ active: opticalSizing === 'none' }" @click="opticalSizing = 'none'">none</button>
-          </div>
-        </div>
       </div>
 
       <div class="info">
@@ -76,9 +67,6 @@ useHead({
           <li>
             font-variation-settings: <strong>'opsz' {{ actualOpsz }}</strong>
           </li>
-          <li>
-            font-optical-sizing: <strong>{{ opticalSizing }}</strong>
-          </li>
         </ul>
       </div>
 
@@ -92,7 +80,7 @@ useHead({
                 :style="{
                   fontSize: `${actualFontSize}px`,
                   fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${actualOpsz}`,
-                  fontOpticalSizing: opticalSizing,
+                  fontOpticalSizing: 'auto',
                 }"
               >
                 {{ icon }}
@@ -105,7 +93,7 @@ useHead({
                 :style="{
                   fontSize: `${actualFontSize}px`,
                   fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20`,
-                  fontOpticalSizing: opticalSizing,
+                  fontOpticalSizing: 'auto',
                 }"
               >
                 {{ icon }}
@@ -118,7 +106,7 @@ useHead({
                 :style="{
                   fontSize: `${actualFontSize}px`,
                   fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48`,
-                  fontOpticalSizing: opticalSizing,
+                  fontOpticalSizing: 'auto',
                 }"
               >
                 {{ icon }}

@@ -109,9 +109,10 @@ export const ICONS_100 = [
 ] as const;
 
 // Google Fonts URL生成（Webfont用）
-export function generateGoogleFontsUrl(icons: readonly string[]): string {
+export function generateGoogleFontsUrl(icons: readonly string[], fill: true | false | 'both' = true): string {
   const iconNames = [...icons].sort().join(',');
-  return `https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,1,0&icon_names=${iconNames}&display=block`;
+  const fillValue = fill === 'both' ? '0..1' : fill ? '0' : '1';
+  return `https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,${fillValue},0&icon_names=${iconNames}&display=block`;
 }
 
 // アイコン表示サイズ

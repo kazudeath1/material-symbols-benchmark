@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ICONS_100, SIZES } from '~/utils/icons';
+import { ICONS_50, generateGoogleFontsUrl, SIZES } from '~/utils/icons';
 
-const iconCount = 100;
-const icons = ICONS_100;
-const fontsUrl = generateGoogleFontsUrl(icons);
+const iconCount = 50;
+const icons = ICONS_50;
+const fontsUrl = generateGoogleFontsUrl(icons, 'both');
 
 useHead({
   link: [
@@ -21,7 +21,7 @@ useHead({
       <h1>Material Symbols Webfont - {{ iconCount }}アイコン</h1>
       <nav>
         <NuxtLink to="/">← トップに戻る</NuxtLink>
-        <a href="https://github.com/kazudeath1/material-symbols-benchmark/blob/main/pages/webfont-100.vue" target="_blank" rel="noopener noreferrer">View Source</a>
+        <a href="https://github.com/kazudeath1/material-symbols-benchmark/blob/main/pages/webfont-50.vue" target="_blank" rel="noopener noreferrer">View Source</a>
       </nav>
     </header>
 
@@ -45,6 +45,19 @@ useHead({
               :style="{
                 fontSize: `${size}px`,
                 fontVariationSettings: `'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' ${size}`,
+              }"
+            >
+              {{ icon }}
+            </span>
+          </div>
+          <div class="icon-sizes">
+            <span
+              v-for="size in SIZES"
+              :key="size"
+              class="material-symbols-outlined"
+              :style="{
+                fontSize: `${size}px`,
+                fontVariationSettings: `'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' ${size}`,
               }"
             >
               {{ icon }}
