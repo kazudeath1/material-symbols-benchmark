@@ -1,15 +1,21 @@
-# Material Symbols 転送サイズ比較検証
+# Material Symbols アイコン表示方法比較・検証
 
-Material SymbolsのWebfont（可変フォント）とSVGの転送サイズを比較検証するプロジェクトです。
+Material Symbolsを使った各アイコン表示方法の比較・optical size挙動を検証するプロジェクトです。
 
 [![GitHub](https://img.shields.io/badge/GitHub-kazudeath1%2Fmaterial--symbols--benchmark-blue?logo=github)](https://github.com/kazudeath1/material-symbols-benchmark)
 [![Demo](https://img.shields.io/badge/Demo-GitHub%20Pages-green?logo=github)](https://kazudeath1.github.io/material-symbols-benchmark/)
 
-## 検証目的
+## 概要
 
-- Optical sizeを活かすには可変フォントが必要
-- 「Webfontは重い」という懸念があるが、サブセット化で実用的なサイズに収まることを数値で示す
-- 10個/50個/100個のアイコンでWebfontとSVGの転送サイズを比較
+このプロジェクトでは、Material Symbolsの**optical size（opsz）**の挙動検証と、各アイコン表示方法の比較を行います。
+
+### Optical size 挙動検証
+
+Material Symbolsの**optical size（opsz）**の挙動を検証します。font-sizeとopszの連動、個別調整による視覚的な変化を確認できます。
+
+### アイコン表示方法比較
+
+Webfont版とSVG版（複数の実装方法）のアイコン表示を、10個/50個/100個のアイコン数で比較します。
 
 ## セットアップ
 
@@ -29,99 +35,48 @@ npm run preview
 
 ## 検証ページ
 
-### Webfont版
+### Optical size 挙動検証
+
+#### Webfont サイズテスト
+- `/webfont-test`
+
+フォントサイズとoptical sizeを個別に調整できます。
+- ✓ font-optical-sizing切り替え
+- ✓ size固定でopsz調整可能
+
+### アイコン表示方法比較
+
+#### Webfont版
 - `/webfont-10` - 10アイコン
 - `/webfont-50` - 50アイコン
 - `/webfont-100` - 100アイコン
 
-Google Fontsの可変フォントを使用。Optical size対応。
+Google Fontsの可変フォントを使用。
+- ✓ Optical size対応
 
-### SVG版（Iconify + CSS）
+#### iconify-vue SVG + CSS
 - `/iconify-svg-css-10` - 10アイコン
 - `/iconify-svg-css-50` - 50アイコン
 - `/iconify-svg-css-100` - 100アイコン
 
-@iconify/vueを使用してSVGをバンドルに含める（CSS経由）。
+@iconify-vue/material-symbols でSVGをインライン化。
+- ✓ JS bundleに含まれる
 
-### SVG版（nuxt-svgo）
+#### @iconify/vue On Demand
+- `/iconify-ondemand-10` - 10アイコン
+- `/iconify-ondemand-50` - 50アイコン
+- `/iconify-ondemand-100` - 100アイコン
+
+&lt;Icon&gt; コンポーネントでオンデマンド読み込み。
+- ✓ 必要なアイコンのみ取得
+
+#### nuxt-svgo Auto Import
 - `/svgo-10` - 10アイコン
 - `/svgo-50` - 50アイコン
 - `/svgo-100` - 100アイコン
 
-nuxt-svgoモジュールを使用して最適化されたSVGコンポーネントとして配信。
-
-## 計測手順
-
-### 1. 本番ビルドの実行
-
-```bash
-npm run build
-npm run preview
-```
-
-### 2. DevTools設定
-
-1. ブラウザのDevToolsを開く（F12 / Cmd+Opt+I）
-2. **Network**タブに移動
-3. **Disable cache**にチェック
-4. **No throttling**を選択
-5. ページをリロード
-
-### 3. 計測データの記録
-
-各ページで以下を記録：
-
-| 計測項目 | 確認方法 |
-|---------|---------|
-| 転送サイズ合計 | Network下部の「transferred」 |
-| リクエスト数 | Network下部のリクエスト総数 |
-| Webfontファイルサイズ | woff2ファイルのtransferred |
-| JSバンドルサイズ | JSファイルのtransferred |
-
-### 4. 結果の記録
-
-以下のテンプレートを使用：
-
-```markdown
-## 計測結果
-
-**環境:**
-- ブラウザ: Chrome 131 / Safari 18 など
-- 日時: 2025-XX-XX
-- ビルド: `npm run build` 後の `npm run preview`
-
-### Webfont版
-
-| アイコン数 | 合計転送サイズ | リクエスト数 | woff2サイズ | その他 |
-|-----------|--------------|-------------|------------|--------|
-| 10        | ? KB         | ?           | ? KB       | -      |
-| 50        | ? KB         | ?           | ? KB       | -      |
-| 100       | ? KB         | ?           | ? KB       | -      |
-
-### SVG版（Iconify）
-
-| アイコン数 | 合計転送サイズ | リクエスト数 | JSバンドル | その他 |
-|-----------|--------------|-------------|-----------|--------|
-| 10        | ? KB         | ?           | ? KB      | -      |
-| 50        | ? KB         | ?           | ? KB      | -      |
-| 100       | ? KB         | ?           | ? KB      | -      |
-
-### SVG版（nuxt-svgo）
-
-| アイコン数 | 合計転送サイズ | リクエスト数 | JSバンドル | その他 |
-|-----------|--------------|-------------|-----------|--------|
-| 10        | ? KB         | ?           | ? KB      | -      |
-| 50        | ? KB         | ?           | ? KB      | -      |
-| 100       | ? KB         | ?           | ? KB      | -      |
-
-### 比較
-
-| アイコン数 | Webfont | Iconify SVG | nuxt-svgo | 備考 |
-|-----------|---------|-------------|-----------|------|
-| 10        | ? KB    | ? KB        | ? KB      | -    |
-| 50        | ? KB    | ? KB        | ? KB      | -    |
-| 100       | ? KB    | ? KB        | ? KB      | -    |
-```
+assets/icons からSVGをコンポーネントとして自動インポート。
+- ✓ ビルド時にコンポーネントとして自動importされる。利用時はtemplateで直接使用可能。
 
 ## 検証対象アイコン
 
@@ -152,8 +107,6 @@ build, code, terminal, bug_report, speed, dark_mode, light_mode, language, trans
 
 ## 注意事項
 
-- **計測は必ず本番ビルド後に実施**（dev serverでは正確な数値が出ない）
-- **キャッシュを無効化**して計測すること
 - Webfont版はOptical sizeに対応（font-variation-settings使用）
 - SVG版（Iconify・nuxt-svgo）はOptical size非対応（固定サイズ）
 - nuxt-svgoはビルド時にSVGをVueコンポーネントとして最適化
@@ -163,20 +116,24 @@ build, code, terminal, bug_report, speed, dark_mode, light_mode, language, trans
 ```
 material-symbols-benchmark/
 ├── pages/
-│   ├── index.vue                # トップページ（ナビゲーション）
-│   ├── webfont-10.vue          # Webfont 10アイコン
-│   ├── webfont-50.vue          # Webfont 50アイコン
-│   ├── webfont-100.vue         # Webfont 100アイコン
-│   ├── iconify-svg-css-10.vue  # Iconify SVG 10アイコン
-│   ├── iconify-svg-css-50.vue  # Iconify SVG 50アイコン
-│   ├── iconify-svg-css-100.vue # Iconify SVG 100アイコン
-│   ├── svgo-10.vue             # nuxt-svgo 10アイコン
-│   ├── svgo-50.vue             # nuxt-svgo 50アイコン
-│   └── svgo-100.vue            # nuxt-svgo 100アイコン
+│   ├── index.vue                 # トップページ（ナビゲーション）
+│   ├── webfont-test.vue          # Webfont サイズテスト
+│   ├── webfont-10.vue            # Webfont 10アイコン
+│   ├── webfont-50.vue            # Webfont 50アイコン
+│   ├── webfont-100.vue           # Webfont 100アイコン
+│   ├── iconify-svg-css-10.vue    # Iconify SVG 10アイコン
+│   ├── iconify-svg-css-50.vue    # Iconify SVG 50アイコン
+│   ├── iconify-svg-css-100.vue   # Iconify SVG 100アイコン
+│   ├── iconify-ondemand-10.vue   # Iconify On Demand 10アイコン
+│   ├── iconify-ondemand-50.vue   # Iconify On Demand 50アイコン
+│   ├── iconify-ondemand-100.vue  # Iconify On Demand 100アイコン
+│   ├── svgo-10.vue               # nuxt-svgo 10アイコン
+│   ├── svgo-50.vue               # nuxt-svgo 50アイコン
+│   └── svgo-100.vue              # nuxt-svgo 100アイコン
 ├── assets/
-│   └── icons/                  # SVGファイル格納
+│   └── icons/                    # SVGファイル格納
 ├── utils/
-│   └── icons.ts                # アイコンリスト定義
+│   └── icons.ts                  # アイコンリスト定義
 ├── nuxt.config.ts
 ├── package.json
 └── README.md
