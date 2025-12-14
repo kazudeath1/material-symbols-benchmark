@@ -137,6 +137,7 @@ useHead({
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  padding-bottom: 280px;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
@@ -177,14 +178,16 @@ nav a.router-link-active {
 .controls {
   background: #f9f9f9;
   padding: 24px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  border-radius: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  position: sticky;
-  top: 20px;
-  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .control-group {
@@ -337,6 +340,7 @@ nav a.router-link-active {
 @media (max-width: 768px) {
   .container {
     padding: 12px;
+    padding-bottom: 320px;
   }
 
   h1 {
@@ -345,10 +349,16 @@ nav a.router-link-active {
 
   .controls {
     padding: 16px;
+    gap: 16px;
+  }
+
+  .control-group {
+    min-width: 100%;
   }
 
   .info {
     padding: 12px;
+    margin-bottom: 16px;
   }
 
   .icon-item {
@@ -356,7 +366,7 @@ nav a.router-link-active {
   }
 
   .icon-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 }
