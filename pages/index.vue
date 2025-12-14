@@ -179,7 +179,7 @@ h4 {
   grid-template-columns: 1fr;
   gap: 30px;
   margin-top: 30px;
-  max-width: 600px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
