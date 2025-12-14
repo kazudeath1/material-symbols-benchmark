@@ -128,4 +128,28 @@ nav a.router-link-active {
 .icon-sizes :deep(svg) {
   color: #1a1a1a;
 }
+
+/* モバイル向けpadding調整 */
+@media (max-width: 768px) {
+  .container {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .info {
+    padding: 12px;
+  }
+
+  .icon-item {
+    padding: 12px;
+  }
+
+  .icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+}
 </style>

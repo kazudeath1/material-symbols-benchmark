@@ -263,4 +263,27 @@ th {
 tbody tr:hover {
   background: #fafafa;
 }
+
+/* モバイル向けpadding調整 */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 12px;
+  }
+
+  .section-group {
+    padding: 20px 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .page-card {
+    padding: 16px;
+  }
+}
 </style>
